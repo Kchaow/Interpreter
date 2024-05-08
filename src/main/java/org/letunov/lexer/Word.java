@@ -3,6 +3,10 @@ package org.letunov.lexer;
 import java.util.Objects;
 
 public class Word extends Token {
+    public static final Word BEGIN = new Word("Begin"),
+                                END = new Word("End"),
+                                FIRST = new Word("First"),
+                                SECOND = new Word("Second");
     private final String lexeme;
     public Word(String lexeme) {
         super(LexemeType.WORD);

@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e4ddb07-aab5-4bf7-93d2-577a8e49979b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/LexemeType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Num.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Token.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Word.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/letunov/LexerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/SyntaxParsingException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParserImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/letunov/SyntaxParserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/letunov/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Word.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -48,12 +46,24 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "JUnit.LexerTest.executor": "Run",
     "JUnit.LexerTest.numAndCharacterStringTest.executor": "Run",
     "JUnit.LexerTest.severalTokenInOneWordTest.executor": "Run",
+    "JUnit.SyntaxParserTest.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingSeveralNumberAtLinkFailedTest.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingSeveralNumberAtLinkSuccessTest.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingSeveralVariableAtLastFailedTest.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingSeveralVariableAtLastFailedTest_2.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingSeveralVariableAtLastSuccessTest.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingSeveralVariableAtLinkFailedTest.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingSeveralVariableAtLinkSuccessTest.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingTest_1.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingTest_2.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "lexer",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/xniho/IdeaProjects/Koryagin",
     "project.structure.last.edited": "Modules",
@@ -62,21 +72,8 @@
     "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.LexerTest.severalTokenInOneWordTest">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.letunov.App" />
-      <module name="Interpreter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.letunov.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LexerTest.numAndCharacterStringTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.org.letunov in Interpreter">
+    <configuration name="SyntaxParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
       <extension name="coverage">
         <pattern>
@@ -85,14 +82,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.letunov" />
-      <option name="MAIN_CLASS_NAME" value="org.letunov.LexerTest" />
-      <option name="METHOD_NAME" value="numAndCharacterStringTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LexerTest.severalTokenInOneWordTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SyntaxParserTest.parsingSeveralVariableAtLastFailedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
       <extension name="coverage">
         <pattern>
@@ -101,18 +97,66 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.letunov" />
-      <option name="MAIN_CLASS_NAME" value="org.letunov.LexerTest" />
-      <option name="METHOD_NAME" value="severalTokenInOneWordTest" />
+      <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
+      <option name="METHOD_NAME" value="parsingSeveralVariableAtLastFailedTest" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SyntaxParserTest.parsingSeveralVariableAtLastFailedTest_2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Interpreter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.letunov.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.letunov" />
+      <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
+      <option name="METHOD_NAME" value="parsingSeveralVariableAtLastFailedTest_2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SyntaxParserTest.parsingSeveralVariableAtLinkSuccessTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Interpreter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.letunov.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.letunov" />
+      <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
+      <option name="METHOD_NAME" value="parsingSeveralVariableAtLinkSuccessTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.letunov in Interpreter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Interpreter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.letunov.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.letunov" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LexerTest.severalTokenInOneWordTest" />
-        <item itemvalue="JUnit.LexerTest.numAndCharacterStringTest" />
-        <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.org.letunov in Interpreter" />
+        <item itemvalue="JUnit.SyntaxParserTest" />
+        <item itemvalue="JUnit.SyntaxParserTest.parsingSeveralVariableAtLinkSuccessTest" />
+        <item itemvalue="JUnit.SyntaxParserTest.parsingSeveralVariableAtLastFailedTest_2" />
+        <item itemvalue="JUnit.SyntaxParserTest.parsingSeveralVariableAtLastFailedTest" />
       </list>
     </recent_temporary>
   </component>
@@ -131,20 +175,5 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java</url>
-          <line>21</line>
-          <properties class="org.letunov.lexer.Lexer" method="scan">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

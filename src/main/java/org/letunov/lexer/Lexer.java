@@ -9,9 +9,12 @@ public class Lexer {
     private int line = 1;
     private char peek = ' ';
     private final Map<String, Word> words = new HashMap<>();
+    private final Map<String, Word> reservedWords = new HashMap<>();
     private PushbackReader pushbackReader;
+    private boolean isUnread;
+    private Token lastToken;
     public void reserve(Word word) {
-        words.put(word.getLexeme(), word);
+        reservedWords.put(word.getLexeme(), word);
     }
     public void setInputStream(InputStream inputStream) {
         this.pushbackReader = new PushbackReader(new BufferedReader(new InputStreamReader(inputStream)));
@@ -20,10 +23,17 @@ public class Lexer {
         return pushbackReader;
     }
     public Token scan() throws IOException {
+        if (isUnread) {
+            isUnread = false;
+            return lastToken;
+        }
+
          do {
             int unit = pushbackReader.read();
-            if (unit == -1 || unit == 65535)
-                return null;
+            if (unit == -1 || unit == 65535) {
+                lastToken = null;
+                return lastToken;
+            }
             peek = (char) unit;
             if (peek == '\n')
                 line++;
@@ -36,7 +46,8 @@ public class Lexer {
                 peek = (char) pushbackReader.read();
             } while (Character.isDigit(peek));
             pushbackReader.unread(peek);
-            return new Num(value);
+            lastToken = new Num(value);
+            return lastToken;
         }
 
         if (Character.isLetter(peek)) {
@@ -47,14 +58,29 @@ public class Lexer {
             } while (Character.isLetterOrDigit(peek));
             pushbackReader.unread(peek);
             String lexeme = stringBuilder.toString();
-            Word word = words.get(lexeme);
-            if (word != null)
-                return word;
-            Word newWord = new Word(lexeme);
-            words.put(lexeme, newWord);
-            return newWord;
+            Word word = reservedWords.get(lexeme);
+            if (word != null) {
+                lastToken = word;
+                return lastToken;
+            }
+            word = words.get(lexeme);
+            if (word != null) {
+                lastToken = word;
+                return lastToken;
+            }
+            word = new Word(lexeme);
+            words.put(lexeme, word);
+            lastToken = word;
+            return lastToken;
         }
 
-        return new Token(new LexemeType(peek));
+        lastToken = new Token(new LexemeType(peek));
+        return lastToken;
+    }
+    public void unreadToken() {
+        isUnread = true;
+    }
+    public boolean isReserved(Word word) {
+        return reservedWords.containsKey(word.getLexeme());
     }
 }
