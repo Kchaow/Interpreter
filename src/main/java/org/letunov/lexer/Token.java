@@ -30,4 +30,17 @@ public class Token {
     public int hashCode() {
         return lexemeType.hashCode();
     }
+    @Override
+    public String toString() {
+        if (lexemeType.equals(LexemeType.NUM)) {
+            return "целое число";
+        }
+        else if (lexemeType.equals(LexemeType.WORD)) {
+            Word word = (Word) this;
+            return word.getLexeme();
+        }
+        else {
+            return String.valueOf((char) lexemeType.getTag());
+        }
+    }
 }

@@ -34,21 +34,19 @@ public class SyntaxParserImpl implements SyntaxParser {
     }
     private void language() throws IOException, SyntaxParsingException {
         currentToken = lexer.scan();
-        if (Word.BEGIN.equals(currentToken)) {
-            matchReservedWord(Word.BEGIN);
+        matchReservedWord(Word.BEGIN);
+        link();
+        while (Word.FIRST.equals(currentToken) || Word.SECOND.equals(currentToken))
             link();
-            last();
-            operator();
-            matchReservedWord(Word.END);
-        }
-        else
-            throw new SyntaxParsingException("Error");
+        last();
+        operator();
+        matchReservedWord(Word.END);
     }
     private void link() throws SyntaxParsingException, IOException {
         if (Word.FIRST.equals(currentToken)) {
             matchReservedWord(Word.FIRST);
             match(NUMBER);
-            while (currentToken.equals(COMMA)) {
+            while (currentToken != null && currentToken.equals(COMMA)) {
                 match(COMMA);
                 match(NUMBER);
             }
@@ -58,47 +56,46 @@ public class SyntaxParserImpl implements SyntaxParser {
             matchVariable();
             int variableCount = 1;
             Token lastVar = null;
-            while (currentToken instanceof Word word && !lexer.isReserved(word)) {
+            while (currentToken != null && currentToken instanceof Word word && !lexer.isReserved(word)) {
                 lastVar = currentToken;
                 matchVariable();
                 variableCount++;
             }
-            if (variableCount < 2)
-                throw new SyntaxParsingException("Error");
-            currentToken = lastVar;
-            lexer.unreadToken();
-        }
-        else
-            throw new SyntaxParsingException("Error");
-    }
-    private void last() throws SyntaxParsingException, IOException {
-        if (currentToken instanceof Word word && !lexer.isReserved(word)) {
-            matchVariable();
-            while (currentToken.equals(SEMICOLON)) {
-                match(SEMICOLON);
-                matchVariable();
+            if (variableCount < 2 && currentToken == null)
+                throw new SyntaxParsingException("Ожидалась переменная, но найден конец");
+            else if (variableCount < 2)
+                throw new SyntaxParsingException("Ожидалась переменная, но найдено %s"
+                        .formatted(currentToken.toString()));
+            if (currentToken == null || !currentToken.equals(Word.FIRST)) {
+                currentToken = lastVar;
+                lexer.unreadToken();
             }
         }
+        else if (currentToken == null)
+            throw new SyntaxParsingException("Ожидалось First или Second, но найден конец");
         else
-            throw new SyntaxParsingException("Error");
+            throw new SyntaxParsingException("Ожидалось First или Second, но найден %s"
+                    .formatted(currentToken.toString()));
+    }
+    private void last() throws SyntaxParsingException, IOException {
+        matchVariable();
+        if (currentToken == null)
+            throw new SyntaxParsingException("Ожидалось целое число или ;, но найден конец");
+        while (currentToken != null && currentToken.equals(SEMICOLON)) {
+            match(SEMICOLON);
+            matchVariable();
+        }
     }
     private void operator() throws SyntaxParsingException, IOException {
-        if (currentToken instanceof Num) {
-            match(NUMBER);
-            match(COLON);
-            matchVariable();
-            match(EQUAL);
-            rightPart();
-        }
-        else
-            throw new SyntaxParsingException("Error");
+        match(NUMBER);
+        match(COLON);
+        matchVariable();
+        match(EQUAL);
+        rightPart();
     }
     private void rightPart() throws SyntaxParsingException, IOException {
-//        boolean isBrace = false;
-////        if (currentToken.equals(LEFT_BRACE)) {
-////            match(LEFT_BRACE);
-////            isBrace = true;
-////        }
+        if (currentToken == null)
+            throw new SyntaxParsingException("Ожидалось выражение, но найден конец");
         if (currentToken.equals(PLUS)) {
             match(PLUS);
         } else if (currentToken.equals(MINUS)) {
@@ -113,8 +110,6 @@ public class SyntaxParserImpl implements SyntaxParser {
             }
             block1();
         }
-//        if (isBrace)
-//            match(RIGHT_BRACE);
     }
     private void block1() throws SyntaxParsingException, IOException {
         block2();
@@ -130,7 +125,7 @@ public class SyntaxParserImpl implements SyntaxParser {
     private void block2() throws SyntaxParsingException, IOException {
         block3();
         if (currentToken == null)
-            throw new SyntaxParsingException("Error");
+            throw new SyntaxParsingException("Ожидалось End, но найден конец");
         while (currentToken.equals(POWER)) {
             match(POWER);
             block3();
@@ -147,9 +142,6 @@ public class SyntaxParserImpl implements SyntaxParser {
             else if (Word.ABS.equals(currentToken)) {
                 matchReservedWord(Word.ABS);
             }
-//            match(LEFT_BRACE);
-//            block1();
-//            match(RIGHT_BRACE);
             Token gap = currentToken;
             match(LEFT_BRACE);
             lexer.unreadToken();
@@ -158,6 +150,8 @@ public class SyntaxParserImpl implements SyntaxParser {
         block4();
     }
     private void block4() throws SyntaxParsingException, IOException {
+        if (currentToken == null)
+            throw new SyntaxParsingException("Ожидался операнд, но найден конец");
         if (currentToken instanceof Word word && !lexer.isReserved(word)) {
             matchVariable();
         }
@@ -170,7 +164,8 @@ public class SyntaxParserImpl implements SyntaxParser {
             match(RIGHT_BRACE);
         }
         else
-            throw new SyntaxParsingException("Error");
+            throw new SyntaxParsingException("Неожиданный токен: %s"
+                    .formatted(currentToken.toString()));
     }
     private boolean isFunction(Token token) {
         return Word.SIN.equals(currentToken) ||
@@ -178,21 +173,32 @@ public class SyntaxParserImpl implements SyntaxParser {
                 Word.ABS.equals(currentToken);
     }
     private void matchReservedWord(Word word) throws IOException, SyntaxParsingException {
+        if (currentToken == null)
+            throw new SyntaxParsingException("Ожидалось ключевое слово %s, но найден конец"
+                    .formatted(word.toString()));
         if (word.equals(currentToken) && lexer.isReserved(word))
             currentToken = lexer.scan();
         else
-            throw new SyntaxParsingException("Error");
+            throw new SyntaxParsingException("Ожидалось ключевое слово %s, но найдено %s"
+                    .formatted(word.toString(), currentToken.toString()));
     }
     private void matchVariable() throws IOException, SyntaxParsingException {
+        if (currentToken == null)
+            throw new SyntaxParsingException("Ожидалась переменная, но найден конец");
         if (currentToken instanceof Word word && !lexer.isReserved(word))
             currentToken = lexer.scan();
         else
-            throw new SyntaxParsingException("Error");
+            throw new SyntaxParsingException("Ожидалась переменная, но найдено %s"
+                    .formatted(currentToken.toString()));
     }
     private void match(Token token) throws IOException, SyntaxParsingException {
-        if (token.equals(currentToken))
+        if (currentToken == null)
+            throw new SyntaxParsingException("Ожидалось %s, но найден конец"
+                    .formatted(token.toString()));
+        else if (token.equals(currentToken))
             currentToken = lexer.scan();
         else
-            throw new SyntaxParsingException("Error");
+            throw new SyntaxParsingException("Ожидалось %s, но найдено %s"
+                    .formatted(token.toString(), currentToken.toString()));
     }
 }

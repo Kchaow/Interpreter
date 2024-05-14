@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3e4ddb07-aab5-4bf7-93d2-577a8e49979b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/LexemeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/LexemeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Token.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParserImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/letunov/SyntaxParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/letunov/SyntaxParserTest.java" afterDir="false" />
     </list>
@@ -42,6 +43,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "JUnit.All in Interpreter.executor": "Run",
     "JUnit.LexerTest.executor": "Run",
     "JUnit.LexerTest.numAndCharacterStringTest.executor": "Run",
     "JUnit.LexerTest.severalTokenInOneWordTest.executor": "Run",
@@ -63,6 +65,8 @@
     "JUnit.SyntaxParserTest.parsingExpressions_22.executor": "Run",
     "JUnit.SyntaxParserTest.parsingExpressions_23.executor": "Run",
     "JUnit.SyntaxParserTest.parsingExpressions_24.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingExpressions_25.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingExpressions_26.executor": "Run",
     "JUnit.SyntaxParserTest.parsingExpressions_3.executor": "Run",
     "JUnit.SyntaxParserTest.parsingExpressions_4.executor": "Run",
     "JUnit.SyntaxParserTest.parsingExpressions_5.executor": "Debug",
@@ -79,6 +83,38 @@
     "JUnit.SyntaxParserTest.parsingSeveralVariableAtLinkSuccessTest.executor": "Run",
     "JUnit.SyntaxParserTest.parsingTest_1.executor": "Run",
     "JUnit.SyntaxParserTest.parsingTest_2.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_1.executor": "Debug",
+    "JUnit.SyntaxParserTest.throwedMessageTest_10.executor": "Debug",
+    "JUnit.SyntaxParserTest.throwedMessageTest_11.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_12.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_13.executor": "Debug",
+    "JUnit.SyntaxParserTest.throwedMessageTest_14.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_15.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_16.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_17.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_18.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_19.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_2.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_20.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_21.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_22.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_23.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_24.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_25.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_26.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_27.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_28.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_29.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_3.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_30.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_31.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_32.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_4.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_5.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_6.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_7.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_8.executor": "Run",
+    "JUnit.SyntaxParserTest.throwedMessageTest_9.executor": "Run",
     "JUnit.org.letunov in Interpreter.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -93,8 +129,16 @@
     "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.SyntaxParserTest.parsingExpressions_25">
-    <configuration name="SyntaxParserTest.parsingExpressions_21" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.All in Interpreter">
+    <configuration name="All in Interpreter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Interpreter" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SyntaxParserTest.throwedMessageTest_10" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
       <extension name="coverage">
         <pattern>
@@ -104,13 +148,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.letunov" />
       <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
-      <option name="METHOD_NAME" value="parsingExpressions_21" />
+      <option name="METHOD_NAME" value="throwedMessageTest_10" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SyntaxParserTest.parsingExpressions_22" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SyntaxParserTest.throwedMessageTest_13" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
       <extension name="coverage">
         <pattern>
@@ -120,13 +164,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.letunov" />
       <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
-      <option name="METHOD_NAME" value="parsingExpressions_22" />
+      <option name="METHOD_NAME" value="throwedMessageTest_13" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SyntaxParserTest.parsingExpressions_23" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SyntaxParserTest.throwedMessageTest_31" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
       <extension name="coverage">
         <pattern>
@@ -136,13 +180,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.letunov" />
       <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
-      <option name="METHOD_NAME" value="parsingExpressions_23" />
+      <option name="METHOD_NAME" value="throwedMessageTest_31" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SyntaxParserTest.parsingExpressions_24" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SyntaxParserTest.throwedMessageTest_32" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
       <extension name="coverage">
         <pattern>
@@ -152,23 +196,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.letunov" />
       <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
-      <option name="METHOD_NAME" value="parsingExpressions_24" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SyntaxParserTest.parsingExpressions_25" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Interpreter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.letunov.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.letunov" />
-      <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
-      <option name="METHOD_NAME" value="parsingExpressions_25" />
+      <option name="METHOD_NAME" value="throwedMessageTest_32" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -176,11 +204,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SyntaxParserTest.parsingExpressions_25" />
-        <item itemvalue="JUnit.SyntaxParserTest.parsingExpressions_24" />
-        <item itemvalue="JUnit.SyntaxParserTest.parsingExpressions_23" />
-        <item itemvalue="JUnit.SyntaxParserTest.parsingExpressions_22" />
-        <item itemvalue="JUnit.SyntaxParserTest.parsingExpressions_21" />
+        <item itemvalue="JUnit.All in Interpreter" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_10" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_13" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_32" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_31" />
       </list>
     </recent_temporary>
   </component>
@@ -203,10 +231,19 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParserImpl.java</url>
+          <line>44</line>
+          <properties class="org.letunov.parser.SyntaxParserImpl" method="link">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParserImpl.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="4" />
+          <line>68</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -26,4 +26,8 @@ public class LexemeType {
     public int hashCode() {
         return tag;
     }
+    @Override
+    public String toString() {
+        return String.valueOf((char) tag);
+    }
 }
