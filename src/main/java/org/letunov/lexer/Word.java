@@ -6,7 +6,10 @@ public class Word extends Token {
     public static final Word BEGIN = new Word("Begin"),
                                 END = new Word("End"),
                                 FIRST = new Word("First"),
-                                SECOND = new Word("Second");
+                                SECOND = new Word("Second"),
+                                COS = new Word("cos"),
+                                SIN = new Word("sin"),
+                                ABS = new Word("abs");
     private final String lexeme;
     public Word(String lexeme) {
         super(LexemeType.WORD);
