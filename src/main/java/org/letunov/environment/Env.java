@@ -1,12 +1,14 @@
 package org.letunov.environment;
 
+import lombok.Getter;
 import org.letunov.lexer.Word;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class Env {
-    private Map<Word, Integer> table;
+    private final Map<Word, Integer> table;
     public Env() {
         table = new HashMap<>();
     }

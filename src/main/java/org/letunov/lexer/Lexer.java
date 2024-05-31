@@ -1,13 +1,15 @@
 package org.letunov.lexer;
 
+import lombok.Getter;
+
 import java.io.*;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Lexer {
+    @Getter
     private int line = 1;
-    private char peek = ' ';
     private final Map<String, Word> words = new HashMap<>();
     private final Map<String, Word> reservedWords = new HashMap<>();
     private PushbackReader pushbackReader;
@@ -19,16 +21,15 @@ public class Lexer {
     public void setInputStream(InputStream inputStream) {
         this.pushbackReader = new PushbackReader(new BufferedReader(new InputStreamReader(inputStream)));
     }
-    public PushbackReader getPushbackReader() {
-        return pushbackReader;
-    }
+
     public Token scan() throws IOException {
         if (isUnread) {
             isUnread = false;
             return lastToken;
         }
 
-         do {
+        char peek = ' ';
+        do {
             int unit = pushbackReader.read();
             if (unit == -1 || unit == 65535) {
                 lastToken = null;

@@ -1,5 +1,6 @@
 package org.letunov.parser;
 
+import lombok.Getter;
 import org.letunov.environment.Env;
 import org.letunov.exception.SyntaxParsingException;
 import org.letunov.exception.VariableDeclarationException;
@@ -11,6 +12,7 @@ import java.io.InputStream;
 
 public class SyntaxParser {
     private final Lexer lexer;
+    @Getter
     private final Env env;
     private Token currentToken;
     private final Token NUMBER = new Token(LexemeType.NUM),
@@ -29,9 +31,7 @@ public class SyntaxParser {
         this.lexer = lexer;
         this.env = env;
     }
-    public Env getEnv() {
-        return env;
-    }
+
     public void parse(String text) throws IOException, SyntaxParsingException, VariableDeclarationException {
         InputStream inputStream = new ByteArrayInputStream(text.getBytes());
         lexer.setInputStream(inputStream);
@@ -69,25 +69,25 @@ public class SyntaxParser {
                 variableCount++;
             }
             if (variableCount < 2 && currentToken == null)
-                throw new SyntaxParsingException("Ожидалась переменная, но найден конец");
+                throw new SyntaxParsingException("Ожидалась переменная, но найден конец", lexer.getLine());
             else if (variableCount < 2)
                 throw new SyntaxParsingException("Ожидалась переменная, но найдено %s"
-                        .formatted(currentToken.toString()));
+                        .formatted(currentToken.toString()), lexer.getLine());
             if (currentToken == null || !currentToken.equals(Word.FIRST)) {
                 currentToken = lastVar;
                 lexer.unreadToken();
             }
         }
         else if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалось First или Second, но найден конец");
+            throw new SyntaxParsingException("Ожидалось First или Second, но найден конец", lexer.getLine());
         else
             throw new SyntaxParsingException("Ожидалось First или Second, но найден %s"
-                    .formatted(currentToken.toString()));
+                    .formatted(currentToken.toString()), lexer.getLine());
     }
     private void last() throws SyntaxParsingException, IOException {
         matchVariable();
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалось целое число или ;, но найден конец");
+            throw new SyntaxParsingException("Ожидалось целое число или ;, но найден конец", lexer.getLine());
         while (currentToken != null && currentToken.equals(SEMICOLON)) {
             match(SEMICOLON);
             matchVariable();
@@ -105,7 +105,7 @@ public class SyntaxParser {
         char op = ' ';
         int t = 0;
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалось выражение, но найден конец");
+            throw new SyntaxParsingException("Ожидалось выражение, но найден конец", lexer.getLine());
         if (currentToken.equals(PLUS)) {
             match(PLUS);
         } else if (currentToken.equals(MINUS)) {
@@ -156,7 +156,7 @@ public class SyntaxParser {
         int t = 0;
         t = block3();
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалось End, но найден конец");
+            throw new SyntaxParsingException("Ожидалось End, но найден конец", lexer.getLine());
         while (currentToken.equals(POWER)) {
             match(POWER);
             t = (int) Math.pow(t, block3());
@@ -166,7 +166,7 @@ public class SyntaxParser {
     private int block3() throws SyntaxParsingException, IOException, VariableDeclarationException {
         int t = 0;
         char op = ' ';
-        if (isFunction(currentToken)) {
+        if (isFunction()) {
             if (Word.SIN.equals(currentToken)) {
                 matchReservedWord(Word.SIN);
                 op = 's';
@@ -183,16 +183,12 @@ public class SyntaxParser {
             match(LEFT_BRACE);
             lexer.unreadToken();
             currentToken = gap;
-            switch (op) {
-                case 's':
-                    t = (int) Math.sin(block4());
-                    break;
-                case 'c':
-                    t = (int) Math.cos(block4());
-                    break;
-                case 'a':
-                    t = Math.abs(block4());
-            }
+            t = switch (op) {
+                case 's' -> (int) Math.sin(block4());
+                case 'c' -> (int) Math.cos(block4());
+                case 'a' -> Math.abs(block4());
+                default -> t;
+            };
             return t;
         }
         return block4();
@@ -200,13 +196,13 @@ public class SyntaxParser {
     private int block4() throws SyntaxParsingException, IOException, VariableDeclarationException {
         int t = 0;
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидался операнд, но найден конец");
+            throw new SyntaxParsingException("Ожидался операнд, но найден конец", lexer.getLine());
         if (currentToken instanceof Word word && !lexer.isReserved(word)) {
             Token var = currentToken;
             matchVariable();
             Integer declaredVariable = env.get((Word) var);
             if (declaredVariable == null)
-                throw new VariableDeclarationException();
+                throw new VariableDeclarationException("Использование необъявленной переменной %s".formatted(((Word) var).getLexeme()) ,lexer.getLine());
             t = declaredVariable;
             return t;
         }
@@ -224,9 +220,9 @@ public class SyntaxParser {
         }
         else
             throw new SyntaxParsingException("Неожиданный токен: %s"
-                    .formatted(currentToken.toString()));
+                    .formatted(currentToken.toString()), lexer.getLine());
     }
-    private boolean isFunction(Token token) {
+    private boolean isFunction() {
         return Word.SIN.equals(currentToken) ||
                 Word.COS.equals(currentToken) ||
                 Word.ABS.equals(currentToken);
@@ -234,30 +230,30 @@ public class SyntaxParser {
     private void matchReservedWord(Word word) throws IOException, SyntaxParsingException {
         if (currentToken == null)
             throw new SyntaxParsingException("Ожидалось ключевое слово %s, но найден конец"
-                    .formatted(word.toString()));
+                    .formatted(word.toString()), lexer.getLine());
         if (word.equals(currentToken) && lexer.isReserved(word))
             currentToken = lexer.scan();
         else
             throw new SyntaxParsingException("Ожидалось ключевое слово %s, но найдено %s"
-                    .formatted(word.toString(), currentToken.toString()));
+                    .formatted(word.toString(), currentToken.toString()), lexer.getLine());
     }
     private void matchVariable() throws IOException, SyntaxParsingException {
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалась переменная, но найден конец");
+            throw new SyntaxParsingException("Ожидалась переменная, но найден конец", lexer.getLine());
         if (currentToken instanceof Word word && !lexer.isReserved(word))
             currentToken = lexer.scan();
         else
             throw new SyntaxParsingException("Ожидалась переменная, но найдено %s"
-                    .formatted(currentToken.toString()));
+                    .formatted(currentToken.toString()), lexer.getLine());
     }
     private void match(Token token) throws IOException, SyntaxParsingException {
         if (currentToken == null)
             throw new SyntaxParsingException("Ожидалось %s, но найден конец"
-                    .formatted(token.toString()));
+                    .formatted(token.toString()), lexer.getLine());
         else if (token.equals(currentToken))
             currentToken = lexer.scan();
         else
             throw new SyntaxParsingException("Ожидалось %s, но найдено %s"
-                    .formatted(token.toString(), currentToken.toString()));
+                    .formatted(token.toString(), currentToken.toString()), lexer.getLine());
     }
 }

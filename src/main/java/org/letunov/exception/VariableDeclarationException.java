@@ -1,10 +1,12 @@
 package org.letunov.exception;
 
-public class VariableDeclarationException extends Exception {
-    public VariableDeclarationException(String message) {
-        super(message);
+import lombok.Getter;
+
+public class VariableDeclarationException extends LanguageException {
+    public VariableDeclarationException(String message, int line) {
+        super(message, line);
     }
-    public VariableDeclarationException() {
-        super();
+    public VariableDeclarationException(int line) {
+        super(line);
     }
 }

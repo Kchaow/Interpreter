@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.letunov.environment.Env;
 import org.letunov.exception.SyntaxParsingException;
+import org.letunov.exception.VariableDeclarationException;
 import org.letunov.lexer.Lexer;
 import org.letunov.lexer.Word;
 import org.letunov.parser.SyntaxParser;
@@ -497,5 +498,13 @@ public class SyntaxParserTest {
     public void parsingExpressions_27() {
         String text = "Begin Second gh df ds First 23, 21 Second dsaf ankl ; sdf ; fdd 23 : ad = 22 35: dsa = 32 + ad 56: gg = 1 + 1 End";
         assertDoesNotThrow(() -> syntaxParser.parse(text));
+    }
+
+    @Test
+    public void parsingExpressions_28() {
+        String text = "Begin Second wf23 gh4 32 : g = gg + 2 End";
+        VariableDeclarationException variableDeclarationException =
+                assertThrows(VariableDeclarationException.class, () -> syntaxParser.parse(text));
+        assertEquals("Использование необъявленной переменной gg", variableDeclarationException.getMessage());
     }
 }
