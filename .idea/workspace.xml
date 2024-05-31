@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e4ddb07-aab5-4bf7-93d2-577a8e49979b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/controller/ExceptionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/dto/EnvDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/LanguageException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/environment/Env.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/environment/Env.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/controller/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/controller/ExceptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/exception/LanguageException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/LanguageException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/exception/SyntaxParsingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/SyntaxParsingException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/exception/VariableDeclarationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/VariableDeclarationException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java" afterDir="false" />
@@ -109,7 +104,7 @@
     "JUnit.SyntaxParserTest.parsingSeveralVariableAtLinkSuccessTest.executor": "Run",
     "JUnit.SyntaxParserTest.parsingTest_1.executor": "Run",
     "JUnit.SyntaxParserTest.parsingTest_2.executor": "Run",
-    "JUnit.SyntaxParserTest.throwedMessageTest_1.executor": "Debug",
+    "JUnit.SyntaxParserTest.throwedMessageTest_1.executor": "Run",
     "JUnit.SyntaxParserTest.throwedMessageTest_10.executor": "Debug",
     "JUnit.SyntaxParserTest.throwedMessageTest_11.executor": "Run",
     "JUnit.SyntaxParserTest.throwedMessageTest_12.executor": "Run",
@@ -171,38 +166,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExpressionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Interpreter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.letunov.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.letunov" />
-      <option name="MAIN_CLASS_NAME" value="org.letunov.ExpressionsTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ExpressionsTest.test_5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Interpreter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.letunov.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.letunov" />
-      <option name="MAIN_CLASS_NAME" value="org.letunov.ExpressionsTest" />
-      <option name="METHOD_NAME" value="test_5" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SyntaxParserTest.parsingExpressions_28" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SyntaxParserTest.throwedMessageTest_1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
       <extension name="coverage">
         <pattern>
@@ -212,16 +176,56 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.letunov" />
       <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
-      <option name="METHOD_NAME" value="parsingExpressions_28" />
+      <option name="METHOD_NAME" value="throwedMessageTest_1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in Interpreter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SyntaxParserTest.throwedMessageTest_2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.letunov.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.letunov" />
+      <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
+      <option name="METHOD_NAME" value="throwedMessageTest_2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SyntaxParserTest.throwedMessageTest_27" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Interpreter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.letunov.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.letunov" />
+      <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
+      <option name="METHOD_NAME" value="throwedMessageTest_27" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SyntaxParserTest.throwedMessageTest_3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Interpreter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.letunov.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.letunov" />
+      <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
+      <option name="METHOD_NAME" value="throwedMessageTest_3" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -229,10 +233,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
-        <item itemvalue="JUnit.java in Interpreter" />
-        <item itemvalue="JUnit.SyntaxParserTest.parsingExpressions_28" />
-        <item itemvalue="JUnit.ExpressionsTest" />
-        <item itemvalue="JUnit.ExpressionsTest.test_5" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_27" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_3" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_2" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_1" />
       </list>
     </recent_temporary>
   </component>
@@ -251,16 +255,5 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParser.java</url>
-          <line>203</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

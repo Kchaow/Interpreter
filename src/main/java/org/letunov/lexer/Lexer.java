@@ -10,6 +10,10 @@ import java.util.Map;
 public class Lexer {
     @Getter
     private int line = 1;
+    @Getter
+    private int symbolCount = 1;
+    @Getter
+    private int symbolLength = 1;
     private final Map<String, Word> words = new HashMap<>();
     private final Map<String, Word> reservedWords = new HashMap<>();
     private PushbackReader pushbackReader;
@@ -29,15 +33,19 @@ public class Lexer {
         }
 
         char peek = ' ';
+        symbolLength = 1;
         do {
             int unit = pushbackReader.read();
+            symbolCount++;
             if (unit == -1 || unit == 65535) {
                 lastToken = null;
                 return lastToken;
             }
             peek = (char) unit;
-            if (peek == '\n')
+            if (peek == '\n') {
                 line++;
+                symbolCount = 1;
+            }
         } while (peek == ' ' || peek == '\t' || peek == '\n');
 
         if (Character.isDigit(peek)) {
@@ -45,8 +53,12 @@ public class Lexer {
             do {
                 value = 10*value + Character.digit(peek, 10);
                 peek = (char) pushbackReader.read();
+                symbolLength++;
+                symbolCount++;
             } while (Character.isDigit(peek));
             pushbackReader.unread(peek);
+            symbolLength--;
+            symbolCount--;
             lastToken = new Num(value);
             return lastToken;
         }
@@ -56,8 +68,12 @@ public class Lexer {
             do {
                 stringBuilder.append(peek);
                 peek = (char) pushbackReader.read();
+                symbolLength++;
+                symbolCount++;
             } while (Character.isLetterOrDigit(peek));
             pushbackReader.unread(peek);
+            symbolLength--;
+            symbolCount--;
             String lexeme = stringBuilder.toString();
             Word word = reservedWords.get(lexeme);
             if (word != null) {

@@ -28,6 +28,8 @@ public class ExceptionController {
         ObjectNode errorMessage = objectMapper.createObjectNode();
         errorMessage.put("error", languageException.getMessage());
         errorMessage.put("line", languageException.getLine());
+        errorMessage.put("symbolCount", languageException.getSymbolCount());
+        errorMessage.put("symbolLength", languageException.getSymbolLength());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<>(errorMessage.toString(), headers, HttpStatus.BAD_REQUEST);
@@ -38,6 +40,8 @@ public class ExceptionController {
         ObjectNode errorMessage = objectMapper.createObjectNode();
         errorMessage.put("error", "Не найдено поле listing в запросе");
         errorMessage.put("line", "1");
+        errorMessage.put("symbolCount", 1);
+        errorMessage.put("symbolLength", 1);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<>(errorMessage.toString(), headers, HttpStatus.BAD_REQUEST);

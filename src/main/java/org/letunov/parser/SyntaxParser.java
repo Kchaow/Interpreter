@@ -69,25 +69,30 @@ public class SyntaxParser {
                 variableCount++;
             }
             if (variableCount < 2 && currentToken == null)
-                throw new SyntaxParsingException("Ожидалась переменная, но найден конец", lexer.getLine());
+                throw new SyntaxParsingException("Ожидалась переменная, но найден конец", lexer.getLine(),
+                        lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
             else if (variableCount < 2)
                 throw new SyntaxParsingException("Ожидалась переменная, но найдено %s"
-                        .formatted(currentToken.toString()), lexer.getLine());
+                        .formatted(currentToken.toString()), lexer.getLine(),
+                        lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
             if (currentToken == null || !currentToken.equals(Word.FIRST)) {
                 currentToken = lastVar;
                 lexer.unreadToken();
             }
         }
         else if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалось First или Second, но найден конец", lexer.getLine());
+            throw new SyntaxParsingException("Ожидалось First или Second, но найден конец", lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
         else
             throw new SyntaxParsingException("Ожидалось First или Second, но найден %s"
-                    .formatted(currentToken.toString()), lexer.getLine());
+                    .formatted(currentToken.toString()), lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
     }
     private void last() throws SyntaxParsingException, IOException {
         matchVariable();
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалось целое число или ;, но найден конец", lexer.getLine());
+            throw new SyntaxParsingException("Ожидалось целое число или ;, но найден конец", lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
         while (currentToken != null && currentToken.equals(SEMICOLON)) {
             match(SEMICOLON);
             matchVariable();
@@ -105,7 +110,8 @@ public class SyntaxParser {
         char op = ' ';
         int t = 0;
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалось выражение, но найден конец", lexer.getLine());
+            throw new SyntaxParsingException("Ожидалось выражение, но найден конец", lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
         if (currentToken.equals(PLUS)) {
             match(PLUS);
         } else if (currentToken.equals(MINUS)) {
@@ -156,7 +162,8 @@ public class SyntaxParser {
         int t = 0;
         t = block3();
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалось End, но найден конец", lexer.getLine());
+            throw new SyntaxParsingException("Ожидалось End, но найден конец", lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
         while (currentToken.equals(POWER)) {
             match(POWER);
             t = (int) Math.pow(t, block3());
@@ -196,13 +203,16 @@ public class SyntaxParser {
     private int block4() throws SyntaxParsingException, IOException, VariableDeclarationException {
         int t = 0;
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидался операнд, но найден конец", lexer.getLine());
+            throw new SyntaxParsingException("Ожидался операнд, но найден конец", lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
         if (currentToken instanceof Word word && !lexer.isReserved(word)) {
             Token var = currentToken;
             matchVariable();
             Integer declaredVariable = env.get((Word) var);
             if (declaredVariable == null)
-                throw new VariableDeclarationException("Использование необъявленной переменной %s".formatted(((Word) var).getLexeme()) ,lexer.getLine());
+                throw new VariableDeclarationException("Использование необъявленной переменной %s"
+                        .formatted(((Word) var).getLexeme()) ,lexer.getLine(),
+                        lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
             t = declaredVariable;
             return t;
         }
@@ -220,7 +230,8 @@ public class SyntaxParser {
         }
         else
             throw new SyntaxParsingException("Неожиданный токен: %s"
-                    .formatted(currentToken.toString()), lexer.getLine());
+                    .formatted(currentToken.toString()), lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
     }
     private boolean isFunction() {
         return Word.SIN.equals(currentToken) ||
@@ -230,30 +241,36 @@ public class SyntaxParser {
     private void matchReservedWord(Word word) throws IOException, SyntaxParsingException {
         if (currentToken == null)
             throw new SyntaxParsingException("Ожидалось ключевое слово %s, но найден конец"
-                    .formatted(word.toString()), lexer.getLine());
+                    .formatted(word.toString()), lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
         if (word.equals(currentToken) && lexer.isReserved(word))
             currentToken = lexer.scan();
         else
             throw new SyntaxParsingException("Ожидалось ключевое слово %s, но найдено %s"
-                    .formatted(word.toString(), currentToken.toString()), lexer.getLine());
+                    .formatted(word.toString(), currentToken.toString()), lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
     }
     private void matchVariable() throws IOException, SyntaxParsingException {
         if (currentToken == null)
-            throw new SyntaxParsingException("Ожидалась переменная, но найден конец", lexer.getLine());
+            throw new SyntaxParsingException("Ожидалась переменная, но найден конец", lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
         if (currentToken instanceof Word word && !lexer.isReserved(word))
             currentToken = lexer.scan();
         else
             throw new SyntaxParsingException("Ожидалась переменная, но найдено %s"
-                    .formatted(currentToken.toString()), lexer.getLine());
+                    .formatted(currentToken.toString()), lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
     }
     private void match(Token token) throws IOException, SyntaxParsingException {
         if (currentToken == null)
             throw new SyntaxParsingException("Ожидалось %s, но найден конец"
-                    .formatted(token.toString()), lexer.getLine());
+                    .formatted(token.toString()), lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
         else if (token.equals(currentToken))
             currentToken = lexer.scan();
         else
             throw new SyntaxParsingException("Ожидалось %s, но найдено %s"
-                    .formatted(token.toString(), currentToken.toString()), lexer.getLine());
+                    .formatted(token.toString(), currentToken.toString()), lexer.getLine(),
+                    lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
     }
 }

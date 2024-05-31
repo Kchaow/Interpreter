@@ -32,14 +32,20 @@ public class SyntaxParserTest {
         String text = "Begin";
         SyntaxParsingException syntaxParsingException =
                 assertThrows(SyntaxParsingException.class, () -> syntaxParser.parse(text));
+        System.out.printf("Line: %d\n", syntaxParsingException.getLine());
+        System.out.printf("SymbolCount: %d\n", syntaxParsingException.getSymbolCount());
+        System.out.printf("SymbolLength: %d\n", syntaxParsingException.getSymbolLength());
         assertEquals("Ожидалось First или Second, но найден конец", syntaxParsingException.getMessage());
     }
 
     @Test
     public void throwedMessageTest_2() {
-        String text = "Begin Third";
+        String text = "Begin\nThird";
         SyntaxParsingException syntaxParsingException =
                 assertThrows(SyntaxParsingException.class, () -> syntaxParser.parse(text));
+        System.out.printf("Line: %d\n", syntaxParsingException.getLine());
+        System.out.printf("SymbolCount: %d\n", syntaxParsingException.getSymbolCount());
+        System.out.printf("SymbolLength: %d\n", syntaxParsingException.getSymbolLength());
         assertEquals("Ожидалось First или Second, но найден Third", syntaxParsingException.getMessage());
     }
 
@@ -48,6 +54,9 @@ public class SyntaxParserTest {
         String text = "Begin First";
         SyntaxParsingException syntaxParsingException =
                 assertThrows(SyntaxParsingException.class, () -> syntaxParser.parse(text));
+        System.out.printf("Line: %d\n", syntaxParsingException.getLine());
+        System.out.printf("SymbolCount: %d\n", syntaxParsingException.getSymbolCount());
+        System.out.printf("SymbolLength: %d\n", syntaxParsingException.getSymbolLength());
         assertEquals("Ожидалось целое число, но найден конец", syntaxParsingException.getMessage());
     }
 
@@ -240,6 +249,9 @@ public class SyntaxParserTest {
         String text = "Begin Second gh df ds First 23, 21 Second dsaf ankl ; sdf ; fdd 35: dsa = 32 + * \\";
         SyntaxParsingException syntaxParsingException =
                 assertThrows(SyntaxParsingException.class, () -> syntaxParser.parse(text));
+        System.out.printf("Line: %d\n", syntaxParsingException.getLine());
+        System.out.printf("SymbolCount: %d\n", syntaxParsingException.getSymbolCount());
+        System.out.printf("SymbolLength: %d\n", syntaxParsingException.getSymbolLength());
         assertEquals("Неожиданный токен: *", syntaxParsingException.getMessage());
     }
 
