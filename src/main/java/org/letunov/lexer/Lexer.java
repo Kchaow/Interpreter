@@ -1,6 +1,7 @@
 package org.letunov.lexer;
 
 import lombok.Getter;
+import org.letunov.exception.AlphabetException;
 import org.letunov.exception.NumeralSystemException;
 
 import java.io.*;
@@ -27,7 +28,7 @@ public class Lexer {
         this.pushbackReader = new PushbackReader(new BufferedReader(new InputStreamReader(inputStream)));
     }
 
-    public Token scan() throws IOException, NumeralSystemException {
+    public Token scan() throws IOException, NumeralSystemException, AlphabetException {
         if (isUnread) {
             isUnread = false;
             return lastToken;
@@ -71,8 +72,11 @@ public class Lexer {
         }
 
         if (Character.isLetter(peek)) {
+            boolean isFitAlphabet = true;
             StringBuilder stringBuilder = new StringBuilder();
             do {
+                if ((peek < 'A' || (peek > 'Z' && peek < 'a') || peek > 'z') && !Character.isDigit(peek))
+                    isFitAlphabet = false;
                 stringBuilder.append(peek);
                 peek = (char) pushbackReader.read();
                 symbolLength++;
@@ -95,6 +99,9 @@ public class Lexer {
             word = new Word(lexeme);
             words.put(lexeme, word);
             lastToken = word;
+            if (!isFitAlphabet)
+                throw new AlphabetException("Слово не соответствует латинскому алфавиту", line,
+                        symbolCount - symbolLength, symbolLength);
             return lastToken;
         }
 

@@ -2,6 +2,7 @@ package org.letunov;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.letunov.exception.AlphabetException;
 import org.letunov.exception.NumeralSystemException;
 import org.letunov.lexer.Lexer;
 import org.letunov.lexer.Num;
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LexerTest {
     @Test
-    public void numAndCharacterStringTest() throws IOException, NumeralSystemException {
+    public void numAndCharacterStringTest() throws IOException, NumeralSystemException, AlphabetException {
         Lexer lexer = new Lexer();
         lexer.reserve(new Word("for"));
         lexer.reserve(new Word("if"));
@@ -43,7 +44,7 @@ public class LexerTest {
 
     @Test
     @Disabled
-    public void severalTokenInOneWordTest() throws IOException, NumeralSystemException {
+    public void severalTokenInOneWordTest() throws IOException, NumeralSystemException, AlphabetException {
         Lexer lexer = new Lexer();
         String text = "bab12+177";
         InputStream inputStream = new ByteArrayInputStream(text.getBytes());

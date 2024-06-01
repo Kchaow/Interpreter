@@ -16,7 +16,7 @@ def run():
         var_table = response.json()["table"]
         result_text = "Результаты вычислений: \n"
         for key in var_table:
-            result_text += f"{key} = {var_table[key]}\n"
+            result_text += f"{key} = {var_table[key]:o}\n"
         output_area["text"] = result_text
     elif response.status_code == 400:
         error_status = response.json()
@@ -46,10 +46,10 @@ bnf = """Язык = "Begin" Звено...Звено Последнее Опер.
 Часть_5 = Перем ! Цел ! "(" Прав.часть ")"
 Функц = "cos" ! "sin" ! "abs"
 Перем = Букв </Симв...Симв/>
-Симв = Букв ! Цел
+Симв = Букв ! Цифр
 Цел = Цифр...Цифр
-Букв = "A" ! "B" !...! "Z"
-Цифр = "1" ! "2" !...! "7" 
+Букв = "A" ! "B" !...! "Z" ! "a" ! "b" !...! "z"
+Цифр = "0" ! "1" !...! "7" 
 Восьмеричная арифметика
 Латинский алфавит"""
 

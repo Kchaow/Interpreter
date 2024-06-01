@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
-import org.letunov.exception.LanguageException;
-import org.letunov.exception.NumeralSystemException;
-import org.letunov.exception.SyntaxParsingException;
-import org.letunov.exception.VariableDeclarationException;
+import org.letunov.exception.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,7 +21,7 @@ public class ExceptionController {
     public ExceptionController(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
-    @ExceptionHandler({SyntaxParsingException.class, VariableDeclarationException.class, NumeralSystemException.class})
+    @ExceptionHandler({SyntaxParsingException.class, VariableDeclarationException.class, NumeralSystemException.class, AlphabetException.class})
     public ResponseEntity<String> languageExceptionHandle(LanguageException languageException) {
         ObjectNode errorMessage = objectMapper.createObjectNode();
         errorMessage.put("error", languageException.getMessage());

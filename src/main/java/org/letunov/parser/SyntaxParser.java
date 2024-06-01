@@ -2,6 +2,7 @@ package org.letunov.parser;
 
 import lombok.Getter;
 import org.letunov.environment.Env;
+import org.letunov.exception.AlphabetException;
 import org.letunov.exception.NumeralSystemException;
 import org.letunov.exception.SyntaxParsingException;
 import org.letunov.exception.VariableDeclarationException;
@@ -33,12 +34,12 @@ public class SyntaxParser {
         this.env = env;
     }
 
-    public void parse(String text) throws IOException, SyntaxParsingException, VariableDeclarationException, NumeralSystemException {
+    public void parse(String text) throws IOException, SyntaxParsingException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         InputStream inputStream = new ByteArrayInputStream(text.getBytes());
         lexer.setInputStream(inputStream);
         language();
     }
-    private void language() throws IOException, SyntaxParsingException, VariableDeclarationException, NumeralSystemException {
+    private void language() throws IOException, SyntaxParsingException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         currentToken = lexer.scan();
         matchReservedWord(Word.BEGIN);
         link();
@@ -50,7 +51,7 @@ public class SyntaxParser {
             operator();
         matchReservedWord(Word.END);
     }
-    private void link() throws SyntaxParsingException, IOException, NumeralSystemException {
+    private void link() throws SyntaxParsingException, IOException, NumeralSystemException, AlphabetException {
         if (Word.FIRST.equals(currentToken)) {
             matchReservedWord(Word.FIRST);
             match(NUMBER);
@@ -89,7 +90,7 @@ public class SyntaxParser {
                     .formatted(currentToken.toString()), lexer.getLine(),
                     lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
     }
-    private void last() throws SyntaxParsingException, IOException, NumeralSystemException {
+    private void last() throws SyntaxParsingException, IOException, NumeralSystemException, AlphabetException {
         matchVariable();
         if (currentToken == null)
             throw new SyntaxParsingException("Ожидалось целое число или ;, но найден конец", lexer.getLine(),
@@ -99,7 +100,7 @@ public class SyntaxParser {
             matchVariable();
         }
     }
-    private void operator() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    private void operator() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         match(NUMBER);
         match(COLON);
         Token var = currentToken;
@@ -107,7 +108,7 @@ public class SyntaxParser {
         match(EQUAL);
         env.put((Word) var, rightPart());
     }
-    private int rightPart() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    private int rightPart() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         char op = ' ';
         int t = 0;
         if (currentToken == null)
@@ -142,7 +143,7 @@ public class SyntaxParser {
         }
         return  t;
     }
-    private int block1() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    private int block1() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         char op = ' ';
         int t = 0;
         t = block2();
@@ -164,7 +165,7 @@ public class SyntaxParser {
         }
         return t;
     }
-    private int block2() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    private int block2() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         int t = 0;
         t = block3();
         if (currentToken == null)
@@ -176,7 +177,7 @@ public class SyntaxParser {
         }
         return t;
     }
-    private int block3() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    private int block3() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         int t = 0;
         char op = ' ';
         if (isFunction()) {
@@ -206,7 +207,7 @@ public class SyntaxParser {
         }
         return block4();
     }
-    private int block4() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    private int block4() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         int t = 0;
         if (currentToken == null)
             throw new SyntaxParsingException("Ожидался операнд, но найден конец", lexer.getLine(),
@@ -245,7 +246,7 @@ public class SyntaxParser {
                 Word.COS.equals(currentToken) ||
                 Word.ABS.equals(currentToken);
     }
-    private void matchReservedWord(Word word) throws IOException, SyntaxParsingException, NumeralSystemException {
+    private void matchReservedWord(Word word) throws IOException, SyntaxParsingException, NumeralSystemException, AlphabetException {
         if (currentToken == null)
             throw new SyntaxParsingException("Ожидалось ключевое слово %s, но найден конец"
                     .formatted(word.toString()), lexer.getLine(),
@@ -257,7 +258,7 @@ public class SyntaxParser {
                     .formatted(word.toString(), currentToken.toString()), lexer.getLine(),
                     lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
     }
-    private void matchVariable() throws IOException, SyntaxParsingException, NumeralSystemException {
+    private void matchVariable() throws IOException, SyntaxParsingException, NumeralSystemException, AlphabetException {
         if (currentToken == null)
             throw new SyntaxParsingException("Ожидалась переменная, но найден конец", lexer.getLine(),
                     lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
@@ -268,7 +269,7 @@ public class SyntaxParser {
                     .formatted(currentToken.toString()), lexer.getLine(),
                     lexer.getSymbolCount() - lexer.getSymbolLength(), lexer.getSymbolLength());
     }
-    private void match(Token token) throws IOException, SyntaxParsingException, NumeralSystemException {
+    private void match(Token token) throws IOException, SyntaxParsingException, NumeralSystemException, AlphabetException {
         if (currentToken == null)
             throw new SyntaxParsingException("Ожидалось %s, но найден конец"
                     .formatted(token.toString()), lexer.getLine(),

@@ -3,6 +3,7 @@ package org.letunov;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.letunov.environment.Env;
+import org.letunov.exception.AlphabetException;
 import org.letunov.exception.NumeralSystemException;
 import org.letunov.exception.SyntaxParsingException;
 import org.letunov.exception.VariableDeclarationException;
@@ -32,7 +33,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_1() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_1() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 1 + 1 End";
         Word var = new Word("gg");
@@ -41,7 +42,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_2() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_2() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 1 + 1 + 1 End";
         Word var = new Word("gg");
@@ -50,7 +51,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_3() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_3() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 1 + 1 + 1 * 2 End";
         Word var = new Word("gg");
@@ -59,7 +60,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_4() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_4() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 1 + 1 + 1 * 2 * 2 End";
         Word var = new Word("gg");
@@ -68,7 +69,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_5() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_5() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 5 + 6 * 3 + 7 End";
         Word var = new Word("gg");
@@ -77,7 +78,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_6() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_6() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = (5 + 6) * (3 + 7) End";
         Word var = new Word("gg");
@@ -86,7 +87,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_7() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_7() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 7 + 5 * 3 + (6 + 3) End";
         Word var = new Word("gg");
@@ -95,7 +96,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_8() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_8() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = (5 + 6 * (4 * 5 + (12 + 34) + 70) * 5) + 6 * 4 + (34 + 5) + (5 * 4) End"; //(5 + 6 * (4 * 5 + (10 + 28) + 56) * 5) + 6 * 4 + (28 + 5) + (5 * 4)
         Word var = new Word("gg");
@@ -104,7 +105,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_9() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_9() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 1 - 1 End";
         Word var = new Word("gg");
@@ -113,7 +114,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_10() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_10() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 1 - 1 + 2 End";
         Word var = new Word("gg");
@@ -122,7 +123,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_11() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_11() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 12 - 3 / 2 End"; //10 - 3 / 2
         Word var = new Word("gg");
@@ -131,7 +132,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_12() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_12() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 67 / (11 + 43 / (23 * 3) / 2) * 2 + 3 * (7 - 34) End";//55 / (9 + 35 / (19 * 3) / 2) * 2 + 3 * (7 - 28)
         Word var = new Word("gg");
@@ -140,7 +141,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_13() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_13() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = cos(0) End";
         Word var = new Word("gg");
@@ -149,7 +150,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_14() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_14() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = cos(0) + abs(-1) * abs(7 + 7 * ((56 - sin(3 + abs(-45)) + (34 / 4) - 3) - 43)) End";//cos(0) + abs(-1) * abs(7 + 7 * ((46 - sin(3 + abs(-37)) + (28 / 4) - 3) - 35))
         Word var = new Word("gg");
@@ -158,7 +159,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_15() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_15() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "45: gg = (5 + 4) * (cos(0) / 5) " +
                 "23: wp = (3 + 5) * (3 + 5) " +
@@ -175,7 +176,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_16() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_16() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg 67: gg = -1 + 2 End";
         Word var = new Word("gg");
         syntaxParser.parse(lang);
@@ -183,7 +184,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_17() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_17() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg 67: gg = - (5 + 6) + 2 End";
         Word var = new Word("gg");
         syntaxParser.parse(lang);
@@ -191,7 +192,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_18() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_18() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg 67: gg = - cos(0) + 2 End";
         Word var = new Word("gg");
         syntaxParser.parse(lang);
@@ -199,7 +200,7 @@ public class ExpressionsTest {
     }
 
     @Test
-    public void test_19() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException {
+    public void test_19() throws SyntaxParsingException, IOException, VariableDeclarationException, NumeralSystemException, AlphabetException {
         String lang = "Begin First 45 fg " +
                 "67: gg = 7 + 5 * 32 + (63 + 3) End"; //7 + 5 * 26 + (51 + 3)
         Word var = new Word("gg");

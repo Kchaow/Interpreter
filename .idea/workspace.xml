@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e4ddb07-aab5-4bf7-93d2-577a8e49979b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/NumeralSystemException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/AlphabetException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Interpreter_GUI/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter_GUI/gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/controller/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/controller/ExceptionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/controller/LanguageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/controller/LanguageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/letunov/ExpressionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/letunov/ExpressionsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/letunov/LexerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/letunov/LexerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/letunov/SyntaxParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/letunov/SyntaxParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +72,7 @@
     "JUnit.LexerTest.numAndCharacterStringTest.executor": "Run",
     "JUnit.LexerTest.severalTokenInOneWordTest.executor": "Run",
     "JUnit.SyntaxParserTest.executor": "Run",
-    "JUnit.SyntaxParserTest.parsingExpressions_1.executor": "Run",
+    "JUnit.SyntaxParserTest.parsingExpressions_1.executor": "Debug",
     "JUnit.SyntaxParserTest.parsingExpressions_10.executor": "Run",
     "JUnit.SyntaxParserTest.parsingExpressions_11.executor": "Run",
     "JUnit.SyntaxParserTest.parsingExpressions_12.executor": "Debug",
@@ -176,22 +171,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExpressionsTest.test_16" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Interpreter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.letunov.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.letunov" />
-      <option name="MAIN_CLASS_NAME" value="org.letunov.ExpressionsTest" />
-      <option name="METHOD_NAME" value="test_16" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ExpressionsTest.test_17" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
       <extension name="coverage">
@@ -224,6 +203,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SyntaxParserTest.parsingExpressions_1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Interpreter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.letunov.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.letunov" />
+      <option name="MAIN_CLASS_NAME" value="org.letunov.SyntaxParserTest" />
+      <option name="METHOD_NAME" value="parsingExpressions_1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="java in Interpreter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Interpreter" />
       <option name="TEST_OBJECT" value="directory" />
@@ -236,9 +231,9 @@
       <list>
         <item itemvalue="Application.App" />
         <item itemvalue="JUnit.java in Interpreter" />
+        <item itemvalue="JUnit.SyntaxParserTest.parsingExpressions_1" />
         <item itemvalue="JUnit.ExpressionsTest.test_18" />
         <item itemvalue="JUnit.ExpressionsTest.test_17" />
-        <item itemvalue="JUnit.ExpressionsTest.test_16" />
       </list>
     </recent_temporary>
   </component>
