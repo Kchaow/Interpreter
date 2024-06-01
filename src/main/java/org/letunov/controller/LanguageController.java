@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
 import org.letunov.dto.EnvDto;
 import org.letunov.environment.Env;
+import org.letunov.exception.NumeralSystemException;
 import org.letunov.exception.SyntaxParsingException;
 import org.letunov.exception.VariableDeclarationException;
 import org.letunov.lexer.Lexer;
@@ -33,7 +34,7 @@ public class LanguageController {
     }
     @PostMapping("/run")
     @ResponseBody
-    public ResponseEntity<Object> parseAndRun(@RequestBody String json) throws VariableDeclarationException, SyntaxParsingException, IOException {
+    public ResponseEntity<Object> parseAndRun(@RequestBody String json) throws VariableDeclarationException, SyntaxParsingException, IOException, NumeralSystemException {
         log.info(json);
         JsonNode jsonNode = objectMapper.readTree(json);
         String listing = jsonNode.get("listing").asText();

@@ -303,13 +303,13 @@ public class SyntaxParserTest {
 
     @Test
     public void parsingSeveralNumberAtLinkSuccessTest() {
-        String text = "Begin First 23, 134, 89, 0 asd123;d 56 : rty = 2 End";
+        String text = "Begin First 23, 134, 76, 0 asd123;d 56 : rty = 2 End";
         assertDoesNotThrow(() -> syntaxParser.parse(text));
     }
 
     @Test
     public void parsingSeveralNumberAtLinkFailedTest() {
-        String text = "Begin First 23, 134, 89, asd123; 56 : rty = End";
+        String text = "Begin First 23, 134, 76, asd123; 56 : rty = End";
         SyntaxParsingException syntaxParsingException =
                 assertThrows(SyntaxParsingException.class, () -> syntaxParser.parse(text));
         assertEquals("Ожидалось целое число, но найдено asd123", syntaxParsingException.getMessage());

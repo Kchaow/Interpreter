@@ -1,6 +1,7 @@
 package org.letunov.lexer;
 
 import lombok.Getter;
+import org.letunov.exception.NumeralSystemException;
 
 import java.io.*;
 import java.util.Calendar;
@@ -26,7 +27,7 @@ public class Lexer {
         this.pushbackReader = new PushbackReader(new BufferedReader(new InputStreamReader(inputStream)));
     }
 
-    public Token scan() throws IOException {
+    public Token scan() throws IOException, NumeralSystemException {
         if (isUnread) {
             isUnread = false;
             return lastToken;
@@ -49,8 +50,11 @@ public class Lexer {
         } while (peek == ' ' || peek == '\t' || peek == '\n');
 
         if (Character.isDigit(peek)) {
+            boolean isFitOctNumSys = true;
             int value = 0;
             do {
+                if (Character.digit(peek, 8) == -1)
+                    isFitOctNumSys = false;
                 value = 10*value + Character.digit(peek, 10);
                 peek = (char) pushbackReader.read();
                 symbolLength++;
@@ -60,6 +64,9 @@ public class Lexer {
             symbolLength--;
             symbolCount--;
             lastToken = new Num(value);
+            if (!isFitOctNumSys)
+                throw new NumeralSystemException("Число не соответствует восьмеричной системе счисления", line,
+                        symbolCount - symbolLength, symbolLength);
             return lastToken;
         }
 
