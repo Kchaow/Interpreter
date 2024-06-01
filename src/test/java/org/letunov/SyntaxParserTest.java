@@ -40,7 +40,7 @@ public class SyntaxParserTest {
 
     @Test
     public void throwedMessageTest_2() {
-        String text = "Begin\nThird";
+        String text = "Begin Third";
         SyntaxParsingException syntaxParsingException =
                 assertThrows(SyntaxParsingException.class, () -> syntaxParser.parse(text));
         System.out.printf("Line: %d\n", syntaxParsingException.getLine());

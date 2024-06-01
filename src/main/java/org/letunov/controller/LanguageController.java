@@ -15,23 +15,29 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
 @Slf4j
-@RestController
+@Controller
 public class LanguageController {
     private final ObjectMapper objectMapper;
     public LanguageController(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
     @GetMapping
+    public String page() {
+        return "index";
+    }
+    @PostMapping("/run")
+    @ResponseBody
     public ResponseEntity<Object> parseAndRun(@RequestBody String json) throws VariableDeclarationException, SyntaxParsingException, IOException {
+        log.info(json);
         JsonNode jsonNode = objectMapper.readTree(json);
         String listing = jsonNode.get("listing").asText();
+        log.info(listing);
         if (listing == null)
             throw new NullPointerException();
         Lexer lexer = new Lexer();

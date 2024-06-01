@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e4ddb07-aab5-4bf7-93d2-577a8e49979b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/controller/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/controller/ExceptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/exception/LanguageException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/LanguageException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/exception/SyntaxParsingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/SyntaxParsingException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/exception/VariableDeclarationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/exception/VariableDeclarationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/lexer/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/parser/SyntaxParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/letunov/controller/LanguageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/letunov/controller/LanguageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/letunov/SyntaxParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/letunov/SyntaxParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,10 +143,10 @@
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/xniho/IdeaProjects/Koryagin",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+    "settings.editor.selected.configurable": "advanced.settings"
   }
 }]]></component>
   <component name="RunManager" selected="Application.App">
@@ -233,9 +230,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
-        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_27" />
-        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_3" />
         <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_2" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_3" />
+        <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_27" />
         <item itemvalue="JUnit.SyntaxParserTest.throwedMessageTest_1" />
       </list>
     </recent_temporary>
